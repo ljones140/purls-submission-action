@@ -10,7 +10,7 @@ import {
 async function run() {
   const snapshot = new Snapshot(
     {
-      name: "purls-submission-action",
+      name: core.getInput("detector-name"),
       version: "0.0.1",
       url: "https://github.com/hmaurer/purls-submission-action",
     },
