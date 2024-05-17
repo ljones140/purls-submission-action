@@ -20403,7 +20403,7 @@ __nccwpck_require__.r(__webpack_exports__);
 async function run() {
   const snapshot = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Snapshot(
     {
-      name: "purls-submission-action",
+      name: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("detector-name"),
       version: "0.0.1",
       url: "https://github.com/hmaurer/purls-submission-action",
     },
