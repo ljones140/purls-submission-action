@@ -9,6 +9,10 @@ inputs:
     description: "The PURLs to submit, one per line"
     required: true
     default: "."
+  detector-name:
+    description: "Name of the detector"
+    required: false
+    default: purls-submission-action
 runs:
   using: "node16"
   main: "dist/index.js"
