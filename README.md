@@ -1,7 +1,7 @@
 Usage:
 
 ```yaml
-name: Submit PURLs
+name: Dependency Submission with PURLs
 
 on:
   push:
@@ -13,9 +13,12 @@ jobs:
   submit-purls:
     runs-on: ubuntu-latest
     steps:
-      - name: Submit PURLs
-        uses: hmaurer/purls-submission-action@main
+      - name: Submit Helm PURLs
+        uses: elrayle/purls-submission-action@main
         with:
+          manifest-name: Helm
+          manifest-path: Chart.lock
           purls: |-
-            pkg:npm/react@1.2.3
+            pkg:helm/zookeeper@13.7.3
+            pkg:helm/common@2.30.0
 ```
