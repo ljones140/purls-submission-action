@@ -1,10 +1,18 @@
-name: PURLs Submission Action
+name: PURLs Submission Action with Manifest
 description: "Submit some PURLs to the Dependency Submission API"
 inputs:
   token:
     description: "GitHub Personal Access Token (PAT). Defaults to PAT provided by Actions runner."
     required: false
     default: ${{ github.token }}
+  manifest-name:
+    description: "The name of the manifest"
+    required: true
+    default: "."
+  manifest-path:
+    description: "The filepath to the manifest file"
+    required: true
+    default: "."
   purls:
     description: "The PURLs to submit, one per line"
     required: true
