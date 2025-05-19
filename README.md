@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Submit Helm PURLs
-        uses: elrayle/purls-submission-action@main
+        uses: ljones140/purls-submission-action@main
         with:
           # A name for the manifest 
           manifest-name: Helm
