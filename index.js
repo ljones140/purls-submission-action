@@ -16,7 +16,8 @@ async function run() {
     },
     github.context,
     {
-      correlator: `${github.context.workflow}/${github.context.job}`,
+    //  correlator: `${github.context.workflow}/${github.context.job}`,
+      correlator: core.getInput("correlator-name"),
       id: github.context.runId.toString(),
     }
   );
