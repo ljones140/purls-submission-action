@@ -21,6 +21,10 @@ inputs:
     description: "Name of the detector"
     required: false
     default: purls-submission-action
+  correlator-name:
+    description: "Name of the correlator"
+    required: false
+    default: purls-submission-correlator
 runs:
   using: "node16"
   main: "dist/index.js"
