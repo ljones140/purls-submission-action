@@ -20420,7 +20420,18 @@ async function run() {
   const manifest1Path = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-manifest-path");
   const purls1 = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-purls").split("\n").filter(purl => purl.trim());
   const manifest1 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest(manifest1Name, manifest1Path);
-  purls1.forEach((purl) => manifest1.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl.trim())));
+  
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Processing ${purls1.length} PURLs for snapshot 1`);
+  purls1.forEach((purl, index) => {
+    const trimmedPurl = purl.trim();
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`PURL ${index + 1}: "${trimmedPurl}"`);
+    try {
+      manifest1.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(trimmedPurl));
+    } catch (error) {
+      _actions_core__WEBPACK_IMPORTED_MODULE_0__.error(`Failed to process PURL: "${trimmedPurl}"`);
+      throw error;
+    }
+  });
   snapshot1.addManifest(manifest1);
   
   await (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot1);
@@ -20440,7 +20451,18 @@ async function run() {
     const manifest2Path = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-manifest-path");
     const purls2 = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-purls").split("\n").filter(purl => purl.trim());
     const manifest2 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest(snapshot2ManifestName, manifest2Path);
-    purls2.forEach((purl) => manifest2.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl.trim())));
+    
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Processing ${purls2.length} PURLs for snapshot 2`);
+    purls2.forEach((purl, index) => {
+      const trimmedPurl = purl.trim();
+      _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`PURL ${index + 1}: "${trimmedPurl}"`);
+      try {
+        manifest2.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(trimmedPurl));
+      } catch (error) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.error(`Failed to process PURL: "${trimmedPurl}"`);
+        throw error;
+      }
+    });
     snapshot2.addManifest(manifest2);
     
     await (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot2);
