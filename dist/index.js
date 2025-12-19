@@ -20401,25 +20401,51 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 async function run() {
-  const snapshot = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Snapshot(
-    {
-      name: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("detector-name"),
-      version: "0.0.1",
-      url: "https://github.com/hmaurer/purls-submission-action",
-    },
+  const detector = {
+    name: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("detector-name"),
+    version: "0.0.1",
+    url: "https://github.com/hmaurer/purls-submission-action",
+  };
+
+  const snapshot1 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Snapshot(
+    detector,
     _actions_github__WEBPACK_IMPORTED_MODULE_1__.context,
     {
-    //  correlator: `${github.context.workflow}/${github.context.job}`,
-      correlator: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("correlator-name"),
-      id: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.runId.toString(),
+      correlator: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-correlator"),
+      id: `${_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.runId}-1`,
     }
   );
 
-  const purls = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("purls").split("\n");
-  const manifest = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest("purls", "purls");
-  purls.forEach((purl) => manifest.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl)));
-  snapshot.addManifest(manifest);
-  (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot);
+  const manifest1Name = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-manifest-name");
+  const manifest1Path = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-manifest-path");
+  const purls1 = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot1-purls").split("\n");
+  const manifest1 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest(manifest1Name, manifest1Path);
+  purls1.forEach((purl) => manifest1.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl)));
+  snapshot1.addManifest(manifest1);
+  
+  await (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot1);
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("Snapshot 1 submitted successfully");
+
+  const snapshot2ManifestName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-manifest-name");
+  if (snapshot2ManifestName) {
+    const snapshot2 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Snapshot(
+      detector,
+      _actions_github__WEBPACK_IMPORTED_MODULE_1__.context,
+      {
+        correlator: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-correlator"),
+        id: `${_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.runId}-2`,
+      }
+    );
+
+    const manifest2Path = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-manifest-path");
+    const purls2 = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("snapshot2-purls").split("\n");
+    const manifest2 = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest(snapshot2ManifestName, manifest2Path);
+    purls2.forEach((purl) => manifest2.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl)));
+    snapshot2.addManifest(manifest2);
+    
+    await (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot2);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("Snapshot 2 submitted successfully");
+  }
 }
 
 run();
