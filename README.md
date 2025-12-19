@@ -86,9 +86,8 @@ jobs:
       - name: Submit Two NPM Snapshots
         uses: ljones140/purls-submission-action@main
         with:
-          detector-name: npm-detector
-          
           # Snapshot 1
+          snapshot1-detector-name: npm-detector
           snapshot1-correlator: npm-correlator-1
           snapshot1-manifest-name: package.json
           snapshot1-manifest-path: /package.json
@@ -97,6 +96,7 @@ jobs:
             pkg:npm/express@4.18.2
           
           # Snapshot 2
+          snapshot2-detector-name: npm-detector
           snapshot2-correlator: npm-correlator-2
           snapshot2-manifest-name: package.json
           snapshot2-manifest-path: /package.json
@@ -109,11 +109,12 @@ jobs:
 
 | Input | Required | Default | Description |
 |-------|----------|---------|-------------|
-| `detector-name` | No | `purls-submission-action` | Name of the detector |
+| `snapshot1-detector-name` | No | `purls-submission-action` | Name of the detector for snapshot 1 |
 | `snapshot1-correlator` | No | `purls-submission-correlator` | Correlator for snapshot 1 |
 | `snapshot1-manifest-name` | Yes | - | Name of the manifest for snapshot 1 |
 | `snapshot1-manifest-path` | Yes | - | Filepath to the manifest file for snapshot 1 |
 | `snapshot1-purls` | Yes | - | PURLs to submit for snapshot 1 (one per line) |
+| `snapshot2-detector-name` | No | `purls-submission-action` | Name of the detector for snapshot 2 |
 | `snapshot2-correlator` | No | `purls-submission-correlator` | Correlator for snapshot 2 |
 | `snapshot2-manifest-name` | No | - | Name of the manifest for snapshot 2 |
 | `snapshot2-manifest-path` | No | - | Filepath to the manifest file for snapshot 2 |

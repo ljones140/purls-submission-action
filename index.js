@@ -8,14 +8,12 @@ import {
 } from "@github/dependency-submission-toolkit";
 
 async function run() {
-  const detector = {
-    name: core.getInput("detector-name"),
-    version: "0.0.1",
-    url: "https://github.com/ljones140/purls-submission-action",
-  };
-
   const snapshot1 = new Snapshot(
-    detector,
+    {
+      name: core.getInput("snapshot1-detector-name"),
+      version: "0.0.1",
+      url: "https://github.com/ljones140/purls-submission-action",
+    },
     github.context,
     {
       correlator: core.getInput("snapshot1-correlator"),
@@ -47,7 +45,11 @@ async function run() {
   const snapshot2ManifestName = core.getInput("snapshot2-manifest-name");
   if (snapshot2ManifestName) {
     const snapshot2 = new Snapshot(
-      detector,
+      {
+        name: core.getInput("snapshot2-detector-name"),
+        version: "0.0.1",
+        url: "https://github.com/hmaurer/purls-submission-action",
+      },
       github.context,
       {
         correlator: core.getInput("snapshot2-correlator"),

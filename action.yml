@@ -5,8 +5,8 @@ inputs:
     description: "GitHub Personal Access Token (PAT). Defaults to PAT provided by Actions runner."
     required: false
     default: ${{ github.token }}
-  detector-name:
-    description: "Name of the detector"
+  snapshot1-detector-name:
+    description: "Name of the detector for snapshot 1"
     required: false
     default: purls-submission-action
   snapshot1-correlator:
@@ -22,6 +22,10 @@ inputs:
   snapshot1-purls:
     description: "The PURLs to submit for snapshot 1, one per line"
     required: true
+  snapshot2-detector-name:
+    description: "Name of the detector for snapshot 2"
+    required: false
+    default: purls-submission-action
   snapshot2-correlator:
     description: "Correlator for snapshot 2"
     required: false
