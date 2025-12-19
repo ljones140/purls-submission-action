@@ -66,6 +66,45 @@ jobs:
             pkg:npm/@types/node@18.0.0
 ```
 
+### Two Snapshots - Same Manifest, Different Correlators
+
+Test how the dependency graph merges two snapshots with the same manifest but different correlators:
+
+```yaml
+name: Test Dependency Graph Merging
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  submit-purls:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit Two NPM Snapshots
+        uses: ljones140/purls-submission-action@main
+        with:
+          detector-name: npm-detector
+          
+          # Snapshot 1
+          snapshot1-correlator: npm-correlator-1
+          snapshot1-manifest-name: package.json
+          snapshot1-manifest-path: /package.json
+          snapshot1-purls: |-
+            pkg:npm/lodash@4.17.21
+            pkg:npm/express@4.18.2
+          
+          # Snapshot 2
+          snapshot2-correlator: npm-correlator-2
+          snapshot2-manifest-name: package.json
+          snapshot2-manifest-path: /package.json
+          snapshot2-purls: |-
+            pkg:npm/react@18.2.0
+            pkg:npm/@types/node@18.0.0
+```
+
 ## Inputs
 
 | Input | Required | Default | Description |
