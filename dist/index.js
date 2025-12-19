@@ -20405,20 +20405,18 @@ async function run() {
     {
       name: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("detector-name"),
       version: "0.0.1",
-      url: "https://github.com/elrayle/purls-submission-action",
+      url: "https://github.com/hmaurer/purls-submission-action",
     },
     _actions_github__WEBPACK_IMPORTED_MODULE_1__.context,
     {
-      correlator: `${_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.workflow}/${_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.job}`,
+    //  correlator: `${github.context.workflow}/${github.context.job}`,
+      correlator: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("correlator-name"),
       id: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.runId.toString(),
     }
   );
 
-  const manifestName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("manifest-name") ?? "purls";
-  const manifestPath = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("manifest-path") ?? "purls";
-	
   const purls = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("purls").split("\n");
-  const manifest = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest(manifestName, manifestPath);
+  const manifest = new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Manifest("purls", "purls");
   purls.forEach((purl) => manifest.addDirectDependency(new _github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.Package(purl)));
   snapshot.addManifest(manifest);
   (0,_github_dependency_submission_toolkit__WEBPACK_IMPORTED_MODULE_2__.submitSnapshot)(snapshot);
