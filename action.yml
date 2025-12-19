@@ -5,26 +5,36 @@ inputs:
     description: "GitHub Personal Access Token (PAT). Defaults to PAT provided by Actions runner."
     required: false
     default: ${{ github.token }}
-  manifest-name:
-    description: "The name of the manifest"
-    required: true
-    default: "."
-  manifest-path:
-    description: "The filepath to the manifest file"
-    required: true
-    default: "."
-  purls:
-    description: "The PURLs to submit, one per line"
-    required: true
-    default: "."
   detector-name:
     description: "Name of the detector"
     required: false
     default: purls-submission-action
-  correlator-name:
-    description: "Name of the correlator"
+  snapshot1-correlator:
+    description: "Correlator for snapshot 1"
     required: false
     default: purls-submission-correlator
+  snapshot1-manifest-name:
+    description: "The name of the manifest for snapshot 1"
+    required: true
+  snapshot1-manifest-path:
+    description: "The filepath to the manifest file for snapshot 1"
+    required: true
+  snapshot1-purls:
+    description: "The PURLs to submit for snapshot 1, one per line"
+    required: true
+  snapshot2-correlator:
+    description: "Correlator for snapshot 2"
+    required: false
+    default: purls-submission-correlator
+  snapshot2-manifest-name:
+    description: "The name of the manifest for snapshot 2"
+    required: false
+  snapshot2-manifest-path:
+    description: "The filepath to the manifest file for snapshot 2"
+    required: false
+  snapshot2-purls:
+    description: "The PURLs to submit for snapshot 2, one per line"
+    required: false
 runs:
   using: "node16"
   main: "dist/index.js"
