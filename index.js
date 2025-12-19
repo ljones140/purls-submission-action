@@ -25,9 +25,9 @@ async function run() {
 
   const manifest1Name = core.getInput("snapshot1-manifest-name");
   const manifest1Path = core.getInput("snapshot1-manifest-path");
-  const purls1 = core.getInput("snapshot1-purls").split("\n");
+  const purls1 = core.getInput("snapshot1-purls").split("\n").filter(purl => purl.trim());
   const manifest1 = new Manifest(manifest1Name, manifest1Path);
-  purls1.forEach((purl) => manifest1.addDirectDependency(new Package(purl)));
+  purls1.forEach((purl) => manifest1.addDirectDependency(new Package(purl.trim())));
   snapshot1.addManifest(manifest1);
   
   await submitSnapshot(snapshot1);
@@ -45,9 +45,9 @@ async function run() {
     );
 
     const manifest2Path = core.getInput("snapshot2-manifest-path");
-    const purls2 = core.getInput("snapshot2-purls").split("\n");
+    const purls2 = core.getInput("snapshot2-purls").split("\n").filter(purl => purl.trim());
     const manifest2 = new Manifest(snapshot2ManifestName, manifest2Path);
-    purls2.forEach((purl) => manifest2.addDirectDependency(new Package(purl)));
+    purls2.forEach((purl) => manifest2.addDirectDependency(new Package(purl.trim())));
     snapshot2.addManifest(manifest2);
     
     await submitSnapshot(snapshot2);
