@@ -102,7 +102,7 @@ jobs:
           snapshot2-manifest-path: /package.json
           snapshot2-purls: |-
             pkg:npm/react@18.2.0
-            pkg:npm/@types/node@18.0.0
+            pkg:npm/axios@1.6.0
 ```
 
 ## Inputs
