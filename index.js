@@ -11,7 +11,7 @@ async function run() {
   const detector = {
     name: core.getInput("detector-name"),
     version: "0.0.1",
-    url: "https://github.com/hmaurer/purls-submission-action",
+    url: "https://github.com/ljones140/purls-submission-action",
   };
 
   const snapshot1 = new Snapshot(
